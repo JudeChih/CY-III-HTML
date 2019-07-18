@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Lab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
     <style>
         .task-description,
         .list-group {
@@ -114,12 +114,13 @@
     </div>
 
 
-    <script src="../js/jquery.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
+    <script src="./js/jquery.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
     <script type='text/javascript' src='js/ajax_concept.js'></script>
 
     <script>
         $(document).ready(function() {
+            
             $(".nav-tabs a").click(function() {
                 $(this).tab('show');
             });
@@ -127,12 +128,10 @@
 
             $("#getButton").on("click", function() {
                 var s = $("#nameTextBox").val();
-
-
-
-
-
-                $("#reportSpan").text(s);
+                var url = "http://10.0.105.88/hello/"+s;
+                $.get(url,function(response){
+                    $("#reportSpan").text(response);
+                })
             })
 
 
@@ -143,7 +142,15 @@
                     lastName: $("#lastNameTextBox").val()
                 }
 
-
+                $.ajax({
+                    type:"POST",
+                    url:"http://10.0.105.88/test",
+                    contentType:"application/json",
+                    data:JSON.stringify(dataToServer),
+                    success:function(e){
+                        $('#resultSpan').text(e);
+                    }
+                })
 
 
                 $("#resultSpan").text(JSON.stringify(dataToServer));

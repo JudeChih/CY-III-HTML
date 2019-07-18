@@ -15,9 +15,9 @@ app.use( bodyParser.json() );
 app.use( bodyParser.urlencoded({extended: false}) );
 
 // 一切就緒，開始接受用戶端連線
-app.listen(process.env.PORT);
+app.listen(80);
 console.log("Web伺服器就緒，開始接受用戶端連線.");
-console.log("點按「Stop」按鈕可結束伺服器程式.");
+console.log("點按「Ctrl + C」按鈕可結束伺服器程式.");
 
 // ---------------
 
@@ -25,7 +25,7 @@ app.get("/hello/:text", function (request, response) {
 	// 模擬程式三秒鐘延遲
 	var stop = new Date().getTime();
     while(new Date().getTime() < stop + 3000) {
-        ;
+        
     }	
 	
 	response.send("Hello! " + request.params.text);
