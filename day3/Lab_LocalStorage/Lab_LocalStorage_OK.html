@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>LocalStorage Lab</title>
+
+<style type="text/css">
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.125em;
+	margin: 20px;
+}
+
+h1 {
+	text-align: center;
+	border-bottom: 2px solid #009;
+	margin-bottom: 50px;
+}
+
+fieldset {
+	margin: 1.5em 0 0 0;
+	padding: 0;
+	border: 1px solid #CCC;
+}
+
+legend {
+	margin-left: 1em;
+	color: #009;
+	font-weight: bold;
+}
+
+label {
+	float: left;
+	width: 10em;
+	margin-right: 1em;
+}
+
+fieldset ol {
+	list-style: none;
+	padding-top: 3px;
+	padding-left: 2em;
+	padding-bottom: 3px;
+}
+
+fieldset li {
+	line-height: 24px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+fieldset li input.formFields {
+	line-height: 24px;
+	height: 24px;
+	border: 1px solid #CCC;
+}
+
+fieldset .submit {
+	border-style: none;
+	width: 10em;
+	height: 3em;
+	margin: -1em auto 1em 18em;
+}
+</style>
+
+<script src="jquery-1.9.1.min.js"></script>
+
+</head>
+<body>
+
+	<H1>實作 HTML5 的 LocalStorage 功能</H1>
+	<p>輸入表單資料，不要按下「Send」送出，關閉瀏覽器，然後重新回到本頁，自動回復先前輸入的內容。</p>
+
+	<form method="post" action="http://exec.hostzi.com/echo.php" id="frm">
+
+		<fieldset>
+			<legend>Contact Details</legend>
+			<ol>
+				<li><label for="txtName">Name:</label> <input id="txtName"
+					name="txtName" type="text" class="formFields"/></li>
+				<li><label for="txtEmail">Email address:</label> <input
+					id="txtEmail" name="txtEmail" type="text" class="formFields" /></li>
+				<li><label for="txtPhone">Telephone:</label> <input
+					id="txtPhone" name="txtPhone" type="text" class="formFields" /></li>
+			</ol>
+
+			<input id="btnSubmit" name="btnSubmit" type="submit" class="submit"
+				value="Send" />
+
+		</fieldset>
+
+	</form>
+
+<span id="test"></span>
+
+<script>
+	function doChange() {
+		// document.getElementById("test").innerHTML += this.name + ":" + this.value + "<br>";
+		localStorage.setItem(this.name, this.value);
+	}
+	
+	$("#txtName").keyup(doChange);
+	$("#txtEmail").keyup(doChange);
+	$("#txtPhone").keyup(doChange);
+
+	function readAndShow() {
+		if (localStorage["txtName"])
+			$("#txtName").val(localStorage["txtName"]);
+		if (localStorage["txtEmail"])
+			$("#txtEmail").val(localStorage["txtEmail"]);
+		if (localStorage["txtPhone"])
+			$("#txtPhone").val(localStorage["txtPhone"]);
+	}
+	
+	$(document).ready(readAndShow);
+
+	$("#frm").submit(function () {
+		localStorage.clear();
+	});
+	
+</script>
+
+</body>
+</html>

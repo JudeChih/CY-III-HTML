@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8>
+    <title>Lab</title>
+    <script src="js/three.min.js"></script>
+</head>
+
+<body>
+    <div id="cinema"></div>
+    <script>
+        // 在這裡寫 Lab 練習的程式
+
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('cinema').appendChild(renderer.domElement);
+        
+        var scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x000000);
+
+        const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 10000);
+        camera.position.set(0, 0, 500);
+        scene.add(camera);
+
+        var sphere = new THREE.SphereGeometry(200, 50, 50);
+        var material = new THREE.MeshNormalMaterial();
+        var mesh = new THREE.Mesh(sphere, material);
+        mesh.position.z = -300;
+        scene.add(mesh);
+
+
+        var loader = new THREE.TextureLoader();
+        loader.load('images/earth.jpg', function(texture) {
+            mesh.material = new THREE.MeshBasicMaterial({ map: texture, overdraw: 0.5 });
+            renderer.render(scene, camera);
+        });
+
+        requestAnimationFrame(doRender);
+        function doRender() {
+            try { mesh.rotation.y += 0.0002; } catch (e) { };
+            renderer.render(scene, camera);
+            requestAnimationFrame(doRender);
+        }
+
+
+        document.onkeydown = function(e) {
+            switch (event.keyCode) {
+                case 38: // up
+                    mesh.rotation.x -= 0.2;
+                    break;
+                case 40: // down
+                    mesh.rotation.x += 0.2;
+                    break;
+                case 37: // left
+                    mesh.rotation.y -= 0.2;
+                    break;
+                case 39: // right
+                    mesh.rotation.y += 0.2;
+                    break;
+            }
+            event.preventDefault();
+        }
+
+
+        var lastMove = {
+            x: window.innerWidth / 2,
+            y: window.innerHeight / 2
+        };
+
+        var isMouseDown = false;
+
+        document.onmousedown = function() {
+            isMouseDown = true;
+            lastMove.x = event.clientX;
+            lastMove.y = event.clientY;
+        }
+
+        document.onmouseup = function() {
+            isMouseDown = false;
+        }
+
+        document.onmousemove = function() {
+            if (isMouseDown == false) {
+                return;
+            }
+            var moveX = event.clientX - lastMove.x;
+            var moveY = event.clientY - lastMove.y;
+
+            mesh.rotation.y += moveX * 0.0002;
+            mesh.rotation.x += moveY * 0.0002;
+
+            lastMove.x = e.clientX;
+            lastMove.y = e.clientY;
+        }
+
+
+    </script>
+</body>
+
+</html>

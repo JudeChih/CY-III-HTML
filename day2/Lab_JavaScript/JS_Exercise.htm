@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Exercises</title>
+	
+<script>
+
+function Button1_onclick() {
+	// A
+	var line = "";
+	var i = 1;
+	while (i <= 5) {
+		line = line + i.toString();
+		i = i + 1;
+	}
+	txt1.value = line;	
+	
+	// B
+	var line = "";
+	for (var i = 1; i <= 5; i++) {
+		line = line + i.toString();
+	}
+	txt2.value = line;
+}
+
+</script>
+
+
+</head>
+<body>
+ 	txt1:
+	<input type="text" id="txt1" name="txt1" value="World" PlaceHolder="Keyin something" size="40">
+	<br><br>
+	<input type="button" id="Button1" name="Button1"   
+		value="2. 點我一下，執行 JavaScript" onclick="Button1_onclick()">
+	<br><br>
+	txt2:
+    <INPUT type="text" id="txt2"  name="txt2" value="Result" size="40">
+    <br>
+    <div id="debug"></div>
+</body>
+</html>

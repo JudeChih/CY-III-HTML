@@ -1,0 +1,8 @@
+﻿HTML5 作業 -- 公版習作
+
+1. 到下列網站挑選一個中意的樣版:
+http://www.free-css.com/template-categories/bootstrap
+
+2. 練習套用樣版範例，建構一個描述某人或某事或某物的網站作品。
+
+3. 完成後，將作品上傳 zip 檔到 GitHub。

@@ -1,0 +1,85 @@
+Lab: 以 WebSocket 進行 Client/Server 雙向即時互動
+
+
+1.	瀏覽下列網址並且試用各個 WebSocket Demos:
+	https://www.websocket.org/demos.html
+
+
+
+
+2.	檢視並且測試 Demo_Using_Echo_On_Websocket.org.html
+
+
+
+
+3.	建立 WebSocket 用戶端程式
+
+
+3.1	在本資料夾建立一個新的網頁，檔名: WebSocket_Client.html，內容如下:
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+    <input type="text" id="txt">
+    <input type="button" id="btnSend" value="Send">
+    <hr>
+    <div id="debug"></div>
+
+    <script>
+        function log(msg) {
+            document.getElementById("debug").innerHTML += msg + "<br>";
+        }
+        
+         
+        
+    </script>
+
+
+</body>
+</html>
+
+
+3.2	繼續在 script 區塊寫作程式建立 WebSocket 物件，建立 WebSocket 物件時，傳入的 WebSocket 網址:
+    wss://echo.websocket.org/
+    
+        var host = "wss://echo.websocket.org/";
+        var socket = new WebSocket(host);
+
+
+3.3	寫作 WebSocket 物件的 onopen、onmessage、onclose 事件處理函式:
+
+        socket.onopen = function(msg) {
+            log("Welcome - status "+this.readyState);
+        };
+
+        socket.onmessage = function(msg) {
+            log("Received: "+msg.data);
+        };
+
+        socket.onclose = function(msg) {
+            log("Disconnected - status " + this.readyState);
+        };
+
+
+3.4	寫作 btnSend 的  onclick 事件處理函式:
+
+        document.getElementById("btnSend").onclick = function (e) {
+            var s = document.getElementById("txt").value;
+            log("Sending message: " + s);
+            socket.send(s);
+        }
+
+
+3.5	測試 Client 端程式，輸入文字後，點按 Send 按鈕。
+	<Note> 完整的程式碼，請參閱 WebSocket_Client_OK.html
+
+
+
+
+
+

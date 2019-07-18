@@ -1,0 +1,23 @@
+# 上課環境之軟體安裝
+
+
+1.  安裝 Git
+    https://git-scm.com/
+
+
+2.  Visual Studio Code
+    https://code.visualstudio.com/
+
+
+3.  在 Visual Studio Code 安裝套件
+    <Hint>
+    點按 VS Code 左邊側邊工具的第五個(方形那個)圖示，
+    輸入關鍵字，例如: Live
+    Live Server (ritwickdey.liveserver)
+
+
+(Note: 先上課，再找時間下載與安裝即可，第三天的課程才會用到)
+4.  安裝 Node.js
+    https://nodejs.org
+
+

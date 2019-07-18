@@ -1,0 +1,53 @@
+﻿1.	以 HTML Editor 開啟 Lab_LocalStorage.html，
+	找出表單的三個文字輸入方塊，它們的 id 分別是什麼?
+
+
+2.	在 </body> 前，新增一個 <script> 區塊，貼入下列程式碼，
+	用瀏覽器測試一下效果，
+	請簡要描述一下這段程式的內容／功能:
+
+<script>
+	function doChange() {
+		document.getElementById("test").innerHTML += this.name + ":" + this.value + "<br>";
+	}
+	
+	document.getElementById("txtName").onkeyup = doChange;
+	document.getElementById("txtEmail").onkeyup = doChange;
+	document.getElementById("txtPhone").onkeyup = doChange;
+	
+</script>
+
+
+
+
+3.	將 doChange() 函式改成:
+	function doChange() {
+		// document.getElementById("test").innerHTML += this.name + ":" + this.value + "<br>";
+		localStorage.setItem(this.name, this.value);
+	}
+
+
+4.	繼續貼入下列程式，完成後，用瀏覽器測試一下效果:
+
+	function readAndShow() {
+		if (localStorage["txtName"])
+			document.getElementById("txtName").value = localStorage["txtName"];
+		if (localStorage["txtEmail"])
+			document.getElementById("txtEmail").value = localStorage["txtEmail"];
+		if (localStorage["txtPhone"])
+			document.getElementById("txtPhone").value = localStorage["txtPhone"];
+	}
+	
+	window.onload = readAndShow;
+
+
+
+5.	請幫上述程式加上程式註解。
+
+
+
+6.	利用 form 的 onsubmit 事件，呼叫 localStorage.clear() 清除資料:
+	document.forms[0].onsubmit = function () { localStorage.clear(); };
+
+
+

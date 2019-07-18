@@ -1,0 +1,10 @@
+.brand img{
+    width:152px;
+}
+.portfolio li {
+    margin: 0;
+    width: calc(100% / 3);
+}
+#content {
+    padding: 0;
+}
