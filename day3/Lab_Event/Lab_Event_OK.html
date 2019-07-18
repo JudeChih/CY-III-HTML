@@ -64,9 +64,11 @@ a.boxclose {
 			document.getElementById("box").style.top = event.clientY + "px";
 		}
 
-		function doAnimateHide() {
+		function doAnimateHide(e) {
 			document.getElementById("box").style.top = "-200px";
-			event.cancelBubble = true;
+			// e.cancelBubble = true;
+			e.stopPropagation()
+
 		}
 		
 		document.getElementById("boxclose").onclick = doAnimateHide;

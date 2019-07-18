@@ -7,9 +7,21 @@
 <script type="text/javascript">
     // 程式放在這裏
 	$(document).ready(function() {
-		$("div").click(function() {
-			$(this).hide("slow").show("fast");
-		});
+		clickThis()
+		
+		function clickThis(){
+			$("div").unbind()
+			$("div").click(function() {
+				$(this).hide("slow").show("slow");
+				addDiv($(this).text())
+			});
+		}
+
+		function addDiv(string){
+			var a = "<div>" + string +"</div>";
+			$('body').append(a);
+			clickThis();
+		}
 	});
 
 </script>

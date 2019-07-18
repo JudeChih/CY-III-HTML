@@ -2,6 +2,36 @@
 <html>
 <head>
     <meta charset="utf-8" />
+    <style>
+        body{
+            position:relative;
+            width:100%;
+            height:100vh;
+            margin:0;
+        }
+        #panda{
+            position: absolute;
+        }
+        form{
+            width:90px;
+            height:90px;
+            z-index: 111;
+            position: absolute;
+            text-align: center;
+            top:0;
+            bottom:0;
+            left:0;
+            right:0;
+            margin:auto;
+        }
+        button{
+            width:30px;
+            height:30px;
+        }
+        div{
+            font-size: 0;
+        }
+    </style>
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript">
 
@@ -12,13 +42,63 @@
 
         $(document).ready(function () {
             // 在這裏寫程式
+            var aa = "";
+            var dd = "";
+            var dis = 50;//位移距離
+            var view_width = $('body').width();
+            var view_height = $('body').height();
+            aa = $("#panda").width();
+            ee = $("#panda").height();
+            var bb = 0;
+            var cc = 0;
+            $('#goLeft').click(function(){
+                if(bb - dis > 0){
+                    bb = bb - dis;
+                }else{
+                    bb = 0;
+                }
+                $("#panda").stop().animate({'left':bb+'px'})
+            })
             
+            $('#goRight').click(function(){
+                if(bb + dis <= view_width - aa){
+                    bb = bb + dis;
+                }else{
+                    bb = view_width - aa;
+                }
+                $("#panda").stop().animate({'left':bb+'px'});
+            })
+
+            $('#goTop').click(function(){
+                if(cc - dis > 0){
+                    cc = cc - dis;
+                }else{
+                    cc = 0;
+                }
+                $("#panda").stop().animate({'top':cc+'px'});
+            })
+
+            $('#goBottom').click(function(){
+                if(cc + dis <= view_height - ee){
+                    cc = cc + dis;
+                }else{
+                    cc = view_height - ee;
+                }
+                $("#panda").stop().animate({'top':cc+'px'})
+            })
+
+            $('#goCenter').click(function(){
+                bb = 0;
+                cc = 0;
+                $("#panda").stop().animate({'left':bb+'px','top':cc+'px'});
+                // $("#panda").stop().animate({'top':cc+'px'});
+            })
             
-            
-            
-            
-            
-            
+            $("#panda").hover(function(){
+                $("#panda").stop().animate({'width':'200px'})
+            },function(){
+                $("#panda").stop().animate({'width':aa})
+            })
             
         });
     </script>
@@ -26,12 +106,21 @@
 <body>
 
 <img id="panda" src="panda1.jpg">
-
-<div id="report">Report:<br></div>
-<hr>
 <form action="" method="put" onsubmit="return false;">
-  <button type="button" id="btnTry">Try</button>
-  <button type="button" id="btnOff">Off</button>
+    <div>
+        <button type="button" id="goTop">↑</button>
+    </div>
+    <div>
+        <button type="button" id="goLeft">←</button>
+        <button type="button" id="goCenter">○</button>
+        <button type="button" id="goRight">→</button>
+    </div>
+    <div>
+        <button type="button" id="goBottom">↓</button>
+    </div>
+  
+  
+  
 </form>
 </body>
 </html>
