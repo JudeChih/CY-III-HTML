@@ -5,8 +5,10 @@
 </head>
 <body>
     <div id="debug"></div>
+    <div id="result"></div>
+    <div id="dd"></div>
     <script>
-    
+        var lastNumber = "";
         var nextNumber = (function () {
             var lastNumber = 0;
             return function() {
@@ -15,12 +17,25 @@
             }
         })();
     
+        
+        function otherFunction() {
+            lastNumber = Math.floor(Math.random() * 10000);
+        }
         var number = 0;
         number = nextNumber();
         number = nextNumber();
         number = nextNumber();
 
+        setInterval(function(){
+            
+            otherFunction();
+            result.innerText = lastNumber;
+            var data = new Date();
+            dd.innerText = data.toTimeString();
+        },1000)
+
         debug.innerText = number;
+        
     </script>
 </body>
 </html>

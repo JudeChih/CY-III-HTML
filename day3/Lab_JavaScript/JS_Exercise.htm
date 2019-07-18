@@ -6,18 +6,39 @@
 	
 <script>
 
-function Button1_onclick() {
-	var obj = new Object();  // A
-	var obj = {};  // B
-	obj.firstName = "Cheng-Chih";
-	obj.lastName = "Huang";
-	obj.sayHello = function () {
-		debug.innerHTML += "Hello! I'm " + this.lastName + "<br>";	
-	};
-	
-	debug.innerHTML = obj.firstName + "<br>";
+function Box() {
+	this.color = 'black';
+	this.paint = function (value) {
+		this.color = value;
+	}
+}
 
-	obj.sayHello();
+var Home = {
+	Box: function () {
+		this.color = 'black';
+		this.paint = function (value, cb) {
+			// delay 3 seconds.
+			var now = new Date().getTime();
+			
+		    while (new Date().getTime() < now + 3000) { 
+		    	/* do nothing */ 
+		    } 
+			this.color = value;
+			cb();
+			
+		}
+	}
+}
+
+function Button1_onclick() {
+	var objBox = new Home.Box();
+	objBox.paint("RoyalBlue", function () {
+		if(txt2.value){
+			txt2.value = ""
+		}else{
+			txt2.value = objBox.color;
+		}
+	});
 }
 
 </script>
@@ -25,15 +46,22 @@ function Button1_onclick() {
 
 </head>
 <body>
- 	txt1:
-	<input type="text" id="txt1" name="txt1" value="World" PlaceHolder="Keyin something" size="40">
-	<br><br>
+ 	
 	<input type="button" id="Button1" name="Button1"   
 		value="2. 點我一下，執行 JavaScript" onclick="Button1_onclick()">
 	<br><br>
+	txt1:
+	<input type="text" id="txt1" name="txt1" value="" size="40">
+	<br><br>
 	txt2:
-    <INPUT type="text" id="txt2"  name="txt2" value="Result" size="40">
-    <br>
+    <INPUT type="text" id="txt2"  name="txt2" value="" size="40">
+	<br><br>
+	txt3:
+	<input type="text" id="txt3" name="txt3" value="" size="40">
+	<br><br>
+	txt4:
+	<input type="text" id="txt4" name="txt4" value="" size="40">
+	<br><br>
     <div id="debug"></div>
 </body>
 </html>
